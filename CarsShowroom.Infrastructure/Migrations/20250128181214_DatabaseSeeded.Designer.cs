@@ -4,6 +4,7 @@ using CarsShowroom.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarsShowroom.Infrastructure.Migrations
 {
     [DbContext(typeof(CarsShowroomDbContext))]
-    partial class CarsShowroomDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250128181214_DatabaseSeeded")]
+    partial class DatabaseSeeded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
