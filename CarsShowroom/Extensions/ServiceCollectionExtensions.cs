@@ -1,4 +1,4 @@
-﻿using CarsShowroom.Data;
+﻿using CarsShowroom.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
