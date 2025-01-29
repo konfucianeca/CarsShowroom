@@ -11,10 +11,10 @@ namespace CarsShowroom.Infrastructure.Data.Models
     {
         public Customer()
         {
-            this.Vehicles = new HashSet<Vehicle>();
-            this.Appointments = new HashSet<Appointment>();
-            this.Sales = new HashSet<Sale>();
-            this.TestDrives = new HashSet<TestDrive>();
+            this.Vehicles = new List<Vehicle>();
+            this.Appointments = new List<Appointment>();
+            this.Sales = new List<Sale>();
+            this.TestDrives = new List<TestDrive>();
         }
 
         [Key]

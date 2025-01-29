@@ -11,9 +11,9 @@ namespace CarsShowroom.Infrastructure.Data.Models
     {
         public Vehicle()
         {
-            this.Appointments = new HashSet<Appointment>();
-            this.TestDrives = new HashSet<TestDrive>();
-            this.Sales = new HashSet<Sale>();
+            this.Appointments = new List<Appointment>();
+            this.TestDrives = new List<TestDrive>();
+            this.Sales = new List<Sale>();
         }
 
         [Key]

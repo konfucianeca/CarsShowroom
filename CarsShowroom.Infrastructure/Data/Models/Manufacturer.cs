@@ -9,7 +9,7 @@ namespace CarsShowroom.Infrastructure.Data.Models
     {
         public Manufacturer()
         {
-            this.Vehicles = new HashSet<Vehicle>();
+            this.Vehicles = new List<Vehicle>();
         }
 
         [Key]

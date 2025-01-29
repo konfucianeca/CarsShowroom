@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CarsShowroom.Core.Models.Appointment;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CarsShowroom.Controllers
 {

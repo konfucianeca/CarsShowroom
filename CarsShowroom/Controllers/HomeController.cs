@@ -1,4 +1,5 @@
-﻿using CarsShowroom.Models;
+﻿using CarsShowroom.Core.Contracts;
+using CarsShowroom.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
