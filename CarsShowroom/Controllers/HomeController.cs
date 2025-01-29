@@ -11,8 +11,7 @@ namespace CarsShowroom.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IVehicleService vehicleService;
 
-        public HomeController(ILogger<HomeController> logger,
-            IVehicleService _vehicleService)
+        public HomeController(ILogger<HomeController> logger, IVehicleService _vehicleService)
         {
             _logger = logger;
             vehicleService = _vehicleService;

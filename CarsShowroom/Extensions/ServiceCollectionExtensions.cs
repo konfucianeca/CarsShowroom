@@ -1,4 +1,7 @@
-﻿using CarsShowroom.Infrastructure.Data;
+﻿using CarsShowroom.Core.Contracts;
+using CarsShowroom.Core.Services;
+using CarsShowroom.Infrastructure.Data;
+using CarsShowroom.Infrastructure.Data.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +11,7 @@ namespace CarsShowroom.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            //services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<IVehicleService, VehicleService>();
 
             return services;
         }
@@ -18,6 +21,8 @@ namespace CarsShowroom.Extensions
             var connectionString = config.GetConnectionString("DefaultConnection");
             services.AddDbContext<CarsShowroomDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            services.AddScoped<IRepository, Repository>();
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
