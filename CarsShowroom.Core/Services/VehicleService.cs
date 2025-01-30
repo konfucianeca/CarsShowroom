@@ -24,6 +24,7 @@ namespace CarsShowroom.Core.Services
                 {
                     Id = v.Id,
                     ImageUrl = v.ImageUrl,
+                    Maker = v.Manufacturer.Name,
                     Model = v.Model,
                     YearOfProduction = v.YearOfProduction,
                     EngineType = v.Engine.EngineType.ToString(),
