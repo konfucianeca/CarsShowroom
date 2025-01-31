@@ -10,8 +10,4 @@
     <ProjectReference Include="..\CarsShowroom.Infrastructure\CarsShowroom.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Constants\" />
-  </ItemGroup>
-
 </Project>

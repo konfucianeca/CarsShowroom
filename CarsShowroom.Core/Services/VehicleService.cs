@@ -1,5 +1,7 @@
 ﻿using CarsShowroom.Core.Contracts;
 using CarsShowroom.Core.Models.Home;
+using CarsShowroom.Core.Models.Manufacturer;
+using CarsShowroom.Core.Models.Vehicle;
 using CarsShowroom.Infrastructure.Data.Common;
 using CarsShowroom.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +33,47 @@ namespace CarsShowroom.Core.Services
                     Price = v.Price
                 })
                 .ToListAsync();
+        }
+
+        public async Task<IEnumerable<ManufacturerServiceModel>> AllManufacturersAsync()
+        {
+            return await repository.AllReadOnly<Manufacturer>()
+                .Select(m => new ManufacturerServiceModel()
+                {
+                    Id = m.Id,
+                    Name = m.Name
+                })
+                .ToListAsync();
+        }
+
+        public async Task<bool> ManufacturerExistsAsync(int manufacturerId)
+        {
+            return await repository.AllReadOnly<Manufacturer>()
+                .AnyAsync(m => m.Id == manufacturerId);
+        }
+
+        public async Task<int> CreateAsync(VehicleFormModel model)
+        {
+            Vehicle vehicle = new Vehicle()
+            {
+                Model = model.Model,
+                Condition = model.Condition,
+                YearOfProduction = model.YearOfProduction,
+                Region = model.Region,
+                Gearbox = model.Gearbox,
+                Color = model.Color,
+                Mileage = model.Mileage,
+                Features = model.Features,
+                Price = model.Price,
+                ImageUrl = model.ImageUrl,
+                ManufacturerId = model.ManufacturerId,
+                EngineId = model.EngineId
+            };
+
+            await repository.AddAsync(vehicle);
+            await repository.SaveChangesAsync();
+
+            return vehicle.Id;
         }
     }
 

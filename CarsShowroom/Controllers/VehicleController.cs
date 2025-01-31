@@ -1,4 +1,5 @@
-﻿using CarsShowroom.Core.Models.Vehicle;
+﻿using CarsShowroom.Core.Contracts;
+using CarsShowroom.Core.Models.Vehicle;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,12 @@ namespace CarsShowroom.Controllers
 {
     public class VehicleController : BaseController
     {
+        private readonly IVehicleService vehicleService;
+        public VehicleController(IVehicleService _vehicleService)
+        {
+            vehicleService = _vehicleService;
+        }
+
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> All()
@@ -24,15 +31,34 @@ namespace CarsShowroom.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
+            var model = new VehicleFormModel()
+            {
+                Manufacturers = await vehicleService.AllManufacturersAsync()
+            };
+
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(VehicleFormModel model)
         {
-            return RedirectToAction(nameof(Details), new { id = 1 });
+            if (await vehicleService.ManufacturerExistsAsync(model.ManufacturerId)==false)
+            {
+                ModelState.AddModelError(nameof(model.ManufacturerId), "");
+            }
+
+            if (ModelState.IsValid==false)
+            {
+                model.Manufacturers = await vehicleService.AllManufacturersAsync();
+
+                return View(model);
+            }
+
+            int newVehicleId = await vehicleService.CreateAsync(model);
+
+            return RedirectToAction(nameof(Details), new { id = newVehicleId });
         }
 
         [HttpGet]
