@@ -18,6 +18,7 @@ namespace CarsShowroom.Core.Models.Vehicle
 
         [Required(ErrorMessage = RequiredMessage)]
         [MaxLength(4)]
+        [Display(Name ="Year of Production")]
         public string YearOfProduction { get; set; } = null!;
 
         [Required(ErrorMessage = RequiredMessage)]
@@ -46,6 +47,7 @@ namespace CarsShowroom.Core.Models.Vehicle
         public decimal Price { get; set; }
 
         [MaxLength(VehicleImageUrlMaxLenght)]
+        [Display(Name ="Image Url")]
         public string ImageUrl { get; set; } = null!;
 
         [Required(ErrorMessage = RequiredMessage)]
