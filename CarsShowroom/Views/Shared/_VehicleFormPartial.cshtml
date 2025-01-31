@@ -1,0 +1,72 @@
+﻿@model VehicleFormModel
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Model"></label>
+                <input asp-for="Model" class="form-control" placeholder="Vehicle Model...">
+                <span asp-validation-for="Model" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YearOfProduction "></label>
+                <input asp-for="YearOfProduction" class="form-control" placeholder="Year of production...">
+                <span asp-validation-for="YearOfProduction" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Condition "></label>
+                <input asp-for="Condition" class="form-control" placeholder="Technical condition...">
+                <span asp-validation-for="Condition" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Region "></label>
+                <input asp-for="Region" class="form-control" placeholder="Where the vehicle is...">
+                <span asp-validation-for="Region" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gearbox "></label>
+                <input asp-for="Gearbox" class="form-control" placeholder="Gearbox type...">
+                <span asp-validation-for="Gearbox" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color"></label>
+                <input asp-for="Color" class="form-control" placeholder="Color here...">
+                <span asp-validation-for="Color" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mileage "></label>
+                <input asp-for="Mileage" class="form-control" placeholder="Vehicle mileage...">
+                <span asp-validation-for="Mileage" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Features"></label>
+                <textarea asp-for="Features" rows="4" class="form-control" placeholder="ABS, ASP, Air Bag..."></textarea>
+                <span asp-validation-for="Features" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl"></label>
+                <input asp-for="ImageUrl" class="form-control" placeholder="Vehicle picture URL here...">
+                <span asp-validation-for="ImageUrl" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control">
+                <span asp-validation-for="Price" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManufacturerId"></label>
+                <select asp-for="ManufacturerId" class="form-control">
+                    @foreach (var maker in Model.Manufacturers)
+                    {
+                        <option value="@maker.Id">@maker.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="ManufacturerId" class="small text-danger"></span>
+            </div>
+
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>

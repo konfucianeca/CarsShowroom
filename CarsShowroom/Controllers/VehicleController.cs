@@ -38,7 +38,7 @@ namespace CarsShowroom.Controllers
                 Manufacturers = await vehicleService.AllManufacturersAsync()
             };
 
-            return View();
+            return View(model);
         }
 
         [HttpPost]
