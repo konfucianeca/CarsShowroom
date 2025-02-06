@@ -44,12 +44,12 @@ namespace CarsShowroom.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(VehicleFormModel model)
         {
-            if (await vehicleService.ManufacturerExistsAsync(model.ManufacturerId)==false)
+            if (await vehicleService.ManufacturerExistsAsync(model.ManufacturerId) == false)
             {
                 ModelState.AddModelError(nameof(model.ManufacturerId), "");
             }
 
-            if (ModelState.IsValid==false)
+            if (ModelState.IsValid == false)
             {
                 model.Manufacturers = await vehicleService.AllManufacturersAsync();
 

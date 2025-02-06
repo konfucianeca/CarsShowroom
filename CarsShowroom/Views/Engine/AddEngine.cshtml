@@ -1,0 +1,36 @@
+﻿@model EngineFormModel
+
+@{
+    ViewBag.Title = "Add Engine";
+}
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Displacement"></label>
+                <input asp-for="Displacement" class="form-control" placeholder="Add engine displasement here...">
+                <span asp-validation-for="Displacement" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Power"></label>
+                <input asp-for="Power" class="form-control" placeholder="Engine power in Hp...">
+                <span asp-validation-for="Power" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EngineType">Engine Type</label>
+                <select asp-for="EngineType">
+                    <option value="1">Diesel</option>
+                    <option value="2">Petrol</option>
+                    <option value="3">Electric</option>
+                    <option value="4">Hybrid</option>
+                    <option value="5">PlugInHybrid</option>
+                </select>
+                <span asp-validation-for="EngineType" class="small text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input class="btn btn-primary mt-3" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
