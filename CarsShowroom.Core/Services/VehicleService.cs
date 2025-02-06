@@ -29,7 +29,7 @@ namespace CarsShowroom.Core.Services
                     Maker = v.Manufacturer.Name,
                     Model = v.Model,
                     YearOfProduction = v.YearOfProduction,
-                    EngineType = v.Engine.EngineType.ToString(),
+                    EngineType = v.EngineType.ToString(),
                     Price = v.Price
                 })
                 .ToListAsync();
@@ -67,7 +67,9 @@ namespace CarsShowroom.Core.Services
                 Price = model.Price,
                 ImageUrl = model.ImageUrl,
                 ManufacturerId = model.ManufacturerId,
-                EngineId = model.EngineId
+                EngineType = model.EngineType,
+                Displacement = model.Displacement,
+                Power = model.Power
             };
 
             await repository.AddAsync(vehicle);

@@ -4,7 +4,7 @@
     {
         // Vehicle
         public const int VehicleModelMaxLenght = 50;
-        public const int VehicleModelMinLenght = 3;
+        public const int VehicleModelMinLenght = 2;
         public const int RegionNameMaxLenght = 50;
         public const int RegionNameMinLenght = 3;
         public const int ColorNameMaxLenght = 20;

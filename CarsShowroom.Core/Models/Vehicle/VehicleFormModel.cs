@@ -1,5 +1,4 @@
-﻿using CarsShowroom.Core.Models.Engine;
-using CarsShowroom.Core.Models.Manufacturer;
+﻿using CarsShowroom.Core.Models.Manufacturer;
 using CarsShowroom.Infrastructure.Data.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 using static CarsShowroom.Core.Constants.MessageConstants;
@@ -53,10 +52,12 @@ namespace CarsShowroom.Core.Models.Vehicle
         [Required(ErrorMessage = RequiredMessage)]
         public int ManufacturerId { get; set; }
 
-        [Required(ErrorMessage = RequiredMessage)]
-        public int EngineId { get; set; }
+        [Required(ErrorMessage =RequiredMessage)]
+        public Engine EngineType { get; set; }
+        public int Displacement { get; set; }
+        public int Power { get; set; }
 
         public IEnumerable<ManufacturerServiceModel> Manufacturers { get; set; } = new List<ManufacturerServiceModel>();
-        public IEnumerable<VehicleEngineServiceModel> Engines { get; set; } = new List<VehicleEngineServiceModel>();
+       
     }
 }

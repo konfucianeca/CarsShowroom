@@ -1,4 +1,5 @@
-﻿@model VehicleFormModel
+﻿@using CarsShowroom.Infrastructure.Data.Models.Enums
+@model VehicleFormModel
 
 <div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
@@ -74,10 +75,26 @@
                 <span asp-validation-for="ManufacturerId" class="small text-danger"></span>
             </div>
             <br />
-            <div>
-                <label asp-for="EngineId">Engine</label>
-                <a asp-controller="Engine" asp-action="AddEngine">Add Engine</a>
-                <span asp-validation-for="EngineId" class="small text-danger"></span>
+            <div class="form-group">
+                <label asp-for="EngineType" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <select asp-for="EngineType" asp-items="Html.GetEnumSelectList<Engine>()">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="EngineType" class="text-danger" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Displacement"></label>
+                <input asp-for="Displacement" class="form-control">
+                <span asp-validation-for="Displacement" class="small text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Power"></label>
+                <input asp-for="Power" class="form-control">
+                <span asp-validation-for="Power" class="small text-danger"></span>
             </div>
             <br />
             <div class="text-center">

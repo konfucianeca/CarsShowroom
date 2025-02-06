@@ -13,7 +13,6 @@ namespace CarsShowroom.Infrastructure.Data
         }
 
         public DbSet<Vehicle> Vehicles { get; set; } = null!;
-        public DbSet<Engine> Engines { get; set; } = null!;
         public DbSet<Customer> Customers { get; set; } = null!;
         public DbSet<Manufacturer> Manufacturers { get; set; } = null!;
         public DbSet<Sale> Sales { get; set; } = null!;
@@ -44,7 +43,6 @@ namespace CarsShowroom.Infrastructure.Data
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new CustomerConfiguration());
             builder.ApplyConfiguration(new ManufacturerConfiguration());
-            builder.ApplyConfiguration(new EngineConfiguration());
             builder.ApplyConfiguration(new VehicleConfiguration());
 
             base.OnModelCreating(builder);

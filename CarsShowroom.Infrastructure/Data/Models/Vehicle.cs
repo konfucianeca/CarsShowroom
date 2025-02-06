@@ -68,11 +68,10 @@ namespace CarsShowroom.Infrastructure.Data.Models
         public Manufacturer Manufacturer { get; set; } = null!;
 
         [Required]
-        [Comment("Engine identifier")]
-        public int EngineId { get; set; }
-
-        [ForeignKey(nameof(EngineId))]
-        public Engine Engine { get; set; } = null!;
+        [Comment("Vehicle engine type")]
+        public Engine EngineType { get; set; }
+        public int Displacement { get; set; }
+        public int Power { get; set; }
 
         [Required]
         [Comment("Customer identifier")]

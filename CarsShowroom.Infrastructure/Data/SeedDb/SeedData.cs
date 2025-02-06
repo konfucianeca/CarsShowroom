@@ -13,14 +13,10 @@ namespace CarsShowroom.Infrastructure.Data.SeedDb
         public Manufacturer FirstManufacturer { get; set; }
         public Manufacturer SecondManufacturer { get; set; }
         public Manufacturer ThirdManufacturer { get; set; }
-        public Engine FirstEngine { get; set; }
-        public Engine SecondEngine { get; set; }
-        public Engine ThirdEngine { get; set; }
 
         public SeedData()
         {
             SeedManufacturers();
-            SeedEngines();
             SeedUsers();
             SeedCustomer();
             SeedVehicles();
@@ -60,7 +56,9 @@ namespace CarsShowroom.Infrastructure.Data.SeedDb
                 Id = 1,
                 ManufacturerId = FirstManufacturer.Id,
                 Model = "X5 3.5i Xdrive",
-                EngineId = FirstEngine.Id,
+                EngineType = Models.Enums.Engine.Petrol,
+                Displacement = 3000,
+                Power = 306,
                 Condition = Models.Enums.Condition.GoodCondition,
                 YearOfProduction = "2016",
                 Region = "Plovdiv",
@@ -78,7 +76,9 @@ namespace CarsShowroom.Infrastructure.Data.SeedDb
                 Id = 2,
                 ManufacturerId = SecondManufacturer.Id,
                 Model = "Santa Fe 2.2CRDI - 4WD",
-                EngineId = SecondEngine.Id,
+                EngineType = Models.Enums.Engine.Petrol,
+                Displacement = 2200,
+                Power = 197,
                 Condition = Models.Enums.Condition.GoodCondition,
                 YearOfProduction = "2014",
                 Region = "Lovech",
@@ -96,7 +96,9 @@ namespace CarsShowroom.Infrastructure.Data.SeedDb
                 Id = 3,
                 ManufacturerId = ThirdManufacturer.Id,
                 Model = "Honda CR-V 2.2",
-                EngineId = ThirdEngine.Id,
+                EngineType = Models.Enums.Engine.Diesel,
+                Displacement = 2200,
+                Power = 150,
                 Condition = Models.Enums.Condition.WithProblems,
                 YearOfProduction = "2011",
                 Region = "Smolyan",
@@ -128,33 +130,6 @@ namespace CarsShowroom.Infrastructure.Data.SeedDb
             {
                 Id = 3,
                 Name = "Honda"
-            };
-        }
-
-        private void SeedEngines()
-        {
-            FirstEngine = new Engine()
-            {
-                Id = 1,
-                EngineType = Models.Enums.EngineType.Petrol,
-                Displacement = 3000,
-                Power = 306
-            };
-
-            SecondEngine = new Engine()
-            {
-                Id = 2,
-                EngineType = Models.Enums.EngineType.Petrol,
-                Displacement = 2200,
-                Power = 197
-            };
-
-            ThirdEngine = new Engine()
-            {
-                Id = 3,
-                EngineType = Models.Enums.EngineType.Diesel,
-                Displacement = 2200,
-                Power = 150
             };
         }
     }

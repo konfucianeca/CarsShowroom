@@ -1,6 +1,6 @@
 ﻿namespace CarsShowroom.Infrastructure.Data.Models.Enums
 {
-    public enum EngineType
+    public enum Engine
     {
         Diesel = 1,
         Petrol = 2,
