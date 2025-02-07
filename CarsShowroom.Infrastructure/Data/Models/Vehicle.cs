@@ -28,7 +28,7 @@ namespace CarsShowroom.Infrastructure.Data.Models
 
         [Required]
         [Comment("Vehicle production year")]
-        public string YearOfProduction { get; set; }
+        public string YearOfProduction { get; set; } = null!;
 
         [Required]
         [MaxLength(RegionNameMaxLenght)]

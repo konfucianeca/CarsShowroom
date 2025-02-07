@@ -17,7 +17,7 @@ namespace CarsShowroom.Core.Models.Vehicle
 
         [Required(ErrorMessage = RequiredMessage)]
         [MaxLength(4)]
-        [Display(Name ="Year of Production")]
+        [Display(Name = "Year of Production")]
         public string YearOfProduction { get; set; } = null!;
 
         [Required(ErrorMessage = RequiredMessage)]
@@ -46,18 +46,18 @@ namespace CarsShowroom.Core.Models.Vehicle
         public decimal Price { get; set; }
 
         [MaxLength(VehicleImageUrlMaxLenght)]
-        [Display(Name ="Image Url")]
+        [Display(Name = "Image Url")]
         public string ImageUrl { get; set; } = null!;
 
         [Required(ErrorMessage = RequiredMessage)]
         public int ManufacturerId { get; set; }
 
-        [Required(ErrorMessage =RequiredMessage)]
+        [Required(ErrorMessage = RequiredMessage)]
         public Engine EngineType { get; set; }
         public int Displacement { get; set; }
         public int Power { get; set; }
 
         public IEnumerable<ManufacturerServiceModel> Manufacturers { get; set; } = new List<ManufacturerServiceModel>();
-       
+
     }
 }

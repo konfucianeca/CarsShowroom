@@ -17,9 +17,13 @@
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="Condition "></label>
-                <input asp-for="Condition" class="form-control" placeholder="Technical condition...">
-                <span asp-validation-for="Condition" class="small text-danger"></span>
+                <label asp-for="Condition" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <select asp-for="Condition" asp-items="Html.GetEnumSelectList<Condition>()">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="Condition" class="text-danger" />
+                </div>
             </div>
             <br />
             <div class="form-group">
@@ -29,9 +33,13 @@
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="Gearbox "></label>
-                <input asp-for="Gearbox" class="form-control" placeholder="Gearbox type...">
-                <span asp-validation-for="Gearbox" class="small text-danger"></span>
+                <label asp-for="Gearbox" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <select asp-for="Gearbox" asp-items="Html.GetEnumSelectList<Gearbox>()">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="Gearbox" class="text-danger" />
+                </div>
             </div>
             <br />
             <div class="form-group">

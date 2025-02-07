@@ -42,21 +42,21 @@ namespace CarsShowroom.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(VehicleFormModel model)
+        public async Task<IActionResult> Add(VehicleFormModel vehicle)
         {
-            if (await vehicleService.ManufacturerExistsAsync(model.ManufacturerId) == false)
+            if (await vehicleService.ManufacturerExistsAsync(vehicle.ManufacturerId) == false)
             {
-                ModelState.AddModelError(nameof(model.ManufacturerId), "");
+                ModelState.AddModelError(nameof(vehicle.ManufacturerId), "");
             }
 
             if (ModelState.IsValid == false)
             {
-                model.Manufacturers = await vehicleService.AllManufacturersAsync();
+                vehicle.Manufacturers = await vehicleService.AllManufacturersAsync();
 
-                return View(model);
+                return View(vehicle);
             }
 
-            int newVehicleId = await vehicleService.CreateAsync(model);
+            int newVehicleId = await vehicleService.CreateAsync(vehicle);
 
             return RedirectToAction(nameof(Details), new { id = newVehicleId });
         }
@@ -65,12 +65,6 @@ namespace CarsShowroom.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             return View(new VehicleFormModel());
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add(VehicleFormModel model, int id)
-        {
-            return RedirectToAction(nameof(Details), new { id = 1 });
         }
 
         [HttpGet]
