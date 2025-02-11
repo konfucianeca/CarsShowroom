@@ -7,6 +7,7 @@ using static CarsShowroom.Infrastructure.Constants.DataConstants;
 namespace CarsShowroom.Infrastructure.Data.Models
 {
     [Comment("Cars showroom customer")]
+    [Index(nameof(PhoneNumber), IsUnique = true)]
     public class Customer
     {
         public Customer()
@@ -26,9 +27,11 @@ namespace CarsShowroom.Infrastructure.Data.Models
         [Comment("Customer name")]
         public string Name { get; set; } = string.Empty;
 
-        [MaxLength(CustomerBirthDateMaxLenght)]
-        [Comment("Customer name")]
-        public DateTime DateOfBirth { get; set; }
+        [Required]
+        [MaxLength(CustomerPhoneMaxLenght)]
+        [Comment("Customer telephone number")]
+        public string PhoneNumber { get; set; } = string.Empty;
+
 
         [Required]
         [MaxLength(CustomerAddresslMaxLenght)]

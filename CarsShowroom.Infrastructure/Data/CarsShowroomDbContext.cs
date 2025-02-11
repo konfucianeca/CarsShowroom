@@ -2,6 +2,7 @@
 using CarsShowroom.Infrastructure.Data.SeedDb;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace CarsShowroom.Infrastructure.Data
 {
@@ -19,6 +20,12 @@ namespace CarsShowroom.Infrastructure.Data
         public DbSet<TestDrive> TestDrives { get; set; } = null!;
         public DbSet<Appointment> Appointments { get; set; } = null!;
 
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    base.OnConfiguring(optionsBuilder);
+
+        //    optionsBuilder.ConfigureWarnings(warnings => warnings.Log(RelationalEventId.PendingModelChangesWarning));
+        //}
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<TestDrive>()

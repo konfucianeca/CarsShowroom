@@ -4,6 +4,7 @@ using CarsShowroom.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarsShowroom.Infrastructure.Migrations
 {
     [DbContext(typeof(CarsShowroomDbContext))]
-    partial class CarsShowroomDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250207140345_AmendedCustomerEntity")]
+    partial class AmendedCustomerEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,6 +97,16 @@ namespace CarsShowroom.Infrastructure.Migrations
                     b.ToTable("Customers");
 
                     b.HasComment("Cars showroom customer");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Varna, Pirin Str, 45",
+                            Name = "Petar Petrov",
+                            PhoneNumber = "+359899123234",
+                            UserId = "302ded00ee6f4fea7f65fd9f66001b7f62f7673a02459f6930ba396bc26412de"
+                        });
                 });
 
             modelBuilder.Entity("CarsShowroom.Infrastructure.Data.Models.Manufacturer", b =>
@@ -117,6 +129,23 @@ namespace CarsShowroom.Infrastructure.Migrations
                     b.ToTable("Manufacturers");
 
                     b.HasComment("Vehicle producer");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "BMW"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Hyundai"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Honda"
+                        });
                 });
 
             modelBuilder.Entity("CarsShowroom.Infrastructure.Data.Models.Sale", b =>
@@ -280,6 +309,65 @@ namespace CarsShowroom.Infrastructure.Migrations
                     b.ToTable("Vehicles");
 
                     b.HasComment("Vehicle to sale");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Color = "Black",
+                            Condition = 1,
+                            CustomerId = 1,
+                            Displacement = 3000,
+                            EngineType = 2,
+                            Features = "4x4, ABS, ESP, Airbag, Халогенни фарове, ASR/Тракшън контрол, Парктроник, Аларма, Центр. заключване, Старт-Стоп система, Безключово палене",
+                            Gearbox = 3,
+                            ImageUrl = "https://automoto.bg/listings/media/listing//1709991365_nis5vfph.jpg",
+                            ManufacturerId = 1,
+                            Mileage = 178000,
+                            Model = "X5 3.5i Xdrive",
+                            Power = 306,
+                            Price = 41500.00m,
+                            Region = "Plovdiv",
+                            YearOfProduction = "2016"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Color = "Grey metalic",
+                            Condition = 1,
+                            CustomerId = 1,
+                            Displacement = 2200,
+                            EngineType = 2,
+                            Features = "4x4, ABS, ESP, Airbag, Ксенонови фарове, Халогенни фарове, ASR/Тракшън контрол, Парктроник, Аларма, Имобилайзер, Центр. заключване, Застраховка, Старт-Стоп система, Безключово палене",
+                            Gearbox = 2,
+                            ImageUrl = "https://automoto.bg/listings/media/listing//1720295931_img-209442bc4babdf576e0cf1740ae33342-v.jpg",
+                            ManufacturerId = 2,
+                            Mileage = 174000,
+                            Model = "Santa Fe 2.2CRDI - 4WD",
+                            Power = 197,
+                            Price = 34000.00m,
+                            Region = "Lovech",
+                            YearOfProduction = "2014"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Color = "Red",
+                            Condition = 2,
+                            CustomerId = 1,
+                            Displacement = 2200,
+                            EngineType = 1,
+                            Features = "  4x4, ABS, ESP, Airbag, Ксенонови фарове, Халогенни фарове, ASR/Тракшън контрол, Парктроник, Аларма, Имобилайзер, Центр. заключване, Застраховка",
+                            Gearbox = 1,
+                            ImageUrl = "https://automoto.bg/listings/media/listing//1725859766_uml1.jpg",
+                            ManufacturerId = 3,
+                            Mileage = 209000,
+                            Model = "Honda CR-V 2.2",
+                            Power = 150,
+                            Price = 19000.00m,
+                            Region = "Smolyan",
+                            YearOfProduction = "2011"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -397,6 +485,24 @@ namespace CarsShowroom.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "302ded00ee6f4fea7f65fd9f66001b7f62f7673a02459f6930ba396bc26412de",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c4008d68-4762-40de-9961-a29aff7ecc52",
+                            Email = "guest@mail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "guest@mail.com",
+                            NormalizedUserName = "guest@mail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAENDhPlyejNc1uJUEM8g2DtecV1ibKVVo8o5zKWPseUsKSeCRqIbkFV+Ud7W9YXQx3w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b255ebac-d256-4ed0-9245-a60e3a8fd5d8",
+                            TwoFactorEnabled = false,
+                            UserName = "guest@mail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>

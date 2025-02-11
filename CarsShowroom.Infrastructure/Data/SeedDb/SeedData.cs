@@ -44,7 +44,7 @@ namespace CarsShowroom.Infrastructure.Data.SeedDb
             {
                 Id = 1,
                 Name = "Petar Petrov",
-                DateOfBirth = DateTime.Parse("12/05/1985"),
+                PhoneNumber="+359899123234",
                 Address = "Varna, Pirin Str, 45",
                 UserId = User.Id
             };

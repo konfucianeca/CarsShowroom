@@ -19,8 +19,7 @@
 
         // Customer
         public const int CustomerNameMaxLenght = 50;
-        public const int CustomerNameMinLenght = 50;
-        public const int CustomerBirthDateMaxLenght = 15;
+        public const int CustomerNameMinLenght = 5;
         public const int CustomerPhoneMaxLenght = 15;
         //public const int CustomerEmailMaxLenght = 100;
         public const int CustomerAddresslMaxLenght = 100;
