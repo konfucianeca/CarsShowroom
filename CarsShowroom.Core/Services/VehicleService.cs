@@ -35,6 +35,25 @@ namespace CarsShowroom.Core.Services
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<AllVehiclesQueryModel>> AllVehiclesAsync()
+        {
+            return await repository
+                .AllReadOnly<Vehicle>()
+                .Select(v => new AllVehiclesQueryModel()
+                {
+                    Id = v.Id,
+                    ImageUrl = v.ImageUrl,
+                    Maker = v.Manufacturer.Name,
+                    Model = v.Model,
+                    YearOfProduction = v.YearOfProduction,
+                    EngineType = v.EngineType.ToString(),
+                    Price = v.Price,
+                    Region = v.Region,
+                    Mileage = v.Mileage
+                })
+                .ToListAsync();
+        }      
+
         public async Task<IEnumerable<ManufacturerServiceModel>> AllManufacturersAsync()
         {
             return await repository.AllReadOnly<Manufacturer>()
@@ -52,7 +71,7 @@ namespace CarsShowroom.Core.Services
                 .AnyAsync(m => m.Id == manufacturerId);
         }
 
-        public async Task<int> CreateAsync(VehicleFormModel model)
+        public async Task<int> CreateAsync(VehicleFormModel model, int customerId)
         {
             Vehicle vehicle = new Vehicle()
             {
@@ -67,6 +86,7 @@ namespace CarsShowroom.Core.Services
                 Price = model.Price,
                 ImageUrl = model.ImageUrl,
                 ManufacturerId = model.ManufacturerId,
+                CustomerId = customerId,
                 EngineType = model.EngineType,
                 Displacement = model.Displacement,
                 Power = model.Power
