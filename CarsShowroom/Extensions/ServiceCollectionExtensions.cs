@@ -12,6 +12,7 @@ namespace CarsShowroom.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<ICustomerService, CustomerService>();
 
             return services;
         }

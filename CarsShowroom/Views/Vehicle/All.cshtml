@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AllVehiclesQueryModel>
+@{
+    ViewBag.Title = "All Vehicles for sale";
+    var vehicles = Model.ToList();
+}
+
+<div>
+    @for (int i = 0; i < vehicles.Count; i++)
+    {
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src=@vehicles[i].ImageUrl class="img-fluid rounded-start" alt="Vehicle Image">
+                </div>
+                <div class="col-md-4">
+                    <div class="card-body">
+                        <h5 class="card-title">@vehicles[i].Maker</h5>
+                        <p class="card-text"><strong>Model: </strong>@vehicles[i].Model</p>
+                        <p class="card-text"><strong>Year of production: </strong>@vehicles[i].YearOfProduction</p>
+                        <p class="card-text"><strong>Price: </strong>@vehicles[i].Price EUR</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-body">
+                        <p class="card-text"><strong>Region: </strong>@vehicles[i].Region</p>
+                        <p class="card-text"><strong>Mileage: </strong>@vehicles[i].Mileage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

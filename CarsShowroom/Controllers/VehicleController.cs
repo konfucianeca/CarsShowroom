@@ -1,23 +1,27 @@
 ﻿using CarsShowroom.Core.Contracts;
 using CarsShowroom.Core.Models.Vehicle;
+using CarsShowroom.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace CarsShowroom.Controllers
 {
     public class VehicleController : BaseController
     {
         private readonly IVehicleService vehicleService;
-        public VehicleController(IVehicleService _vehicleService)
+        private readonly ICustomerService customerService;
+        public VehicleController(IVehicleService _vehicleService, ICustomerService _customerService)
         {
             vehicleService = _vehicleService;
+            customerService = _customerService;
         }
 
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var model = new AllVehiclesQueryModel();
+            var model = await vehicleService.AllVehiclesAsync();
 
             return View(model);
         }
@@ -33,6 +37,13 @@ namespace CarsShowroom.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
+            string userId = GetUserId();
+            bool customerExists = await customerService.ExistByIdAsync(userId);
+            if (!customerExists)
+            {
+                return RedirectToAction(nameof(Add), "Customer");
+            }
+
             var model = new VehicleFormModel()
             {
                 Manufacturers = await vehicleService.AllManufacturersAsync()
@@ -56,7 +67,15 @@ namespace CarsShowroom.Controllers
                 return View(vehicle);
             }
 
-            int newVehicleId = await vehicleService.CreateAsync(vehicle);
+            string userId = GetUserId();
+            bool userExists = await customerService.ExistByIdAsync(userId);
+            if (!userExists)
+            {
+                return RedirectToAction("Add", "Customer");
+            }
+
+            int customerId = await customerService.GetCustomerIdAsync(User.Id());
+            int newVehicleId = await vehicleService.CreateAsync(vehicle, customerId);
 
             return RedirectToAction(nameof(Details), new { id = newVehicleId });
         }
@@ -95,6 +114,11 @@ namespace CarsShowroom.Controllers
         public async Task<IActionResult> Sale(int id)
         {
             return RedirectToAction(nameof(All));
+        }
+
+        private string GetUserId()
+        {
+            return User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
     }
 }
