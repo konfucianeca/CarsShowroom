@@ -24,7 +24,7 @@ namespace CarsShowroom.Infrastructure.Data.Models
         [MaxLength(VehicleModelMaxLenght)]
         [Comment("Vehicle model")]
         public string Model { get; set; } = string.Empty;
-        public Condition? Condition { get; set; }
+        public Condition Condition { get; set; } 
 
         [Required]
         [Comment("Vehicle production year")]
@@ -37,7 +37,7 @@ namespace CarsShowroom.Infrastructure.Data.Models
 
         [Required]
         [Comment("What type gearbox fitted on the vehicle")]
-        public Gearbox Gearbox { get; set; }
+        public Gearbox Gearbox { get; set; } 
 
         [Required]
         [MaxLength(ColorNameMaxLenght)]
@@ -69,7 +69,7 @@ namespace CarsShowroom.Infrastructure.Data.Models
 
         [Required]
         [Comment("Vehicle engine type")]
-        public Engine EngineType { get; set; }
+        public Engine EngineType { get; set; } 
         public int Displacement { get; set; }
         public int Power { get; set; }
 

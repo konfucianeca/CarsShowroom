@@ -2,8 +2,8 @@
 {
     public enum Condition
     {
-        GoodCondition = 1,
-        WithProblems = 2,
-        ForParts = 3
+        Good_Condition = 1,
+        With_Problems = 2,
+        For_Parts = 3
     }
 }

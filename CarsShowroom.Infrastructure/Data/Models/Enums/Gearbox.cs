@@ -3,7 +3,7 @@
     public enum Gearbox
     {
         Manual = 1,
-        SemiAutomatic = 2,
+        Semi_Automatic = 2,
         Automatic = 3
     }
 }

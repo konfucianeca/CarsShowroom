@@ -6,6 +6,6 @@
         Petrol = 2,
         Electric = 3,
         Hybrid = 4,
-        PlugInHybrid = 5
+        PlugIn_Hybrid = 5
     }
 }

@@ -19,12 +19,12 @@ namespace CarsShowroom.Infrastructure.Data.Common
             await DbSet<T>().AddAsync(entity);
         }
 
-        public IQueryable<T> All<T>() where T : class
+        public IQueryable<T> AllAsync<T>() where T : class
         {
             return DbSet<T>();
         }
 
-        public IQueryable<T> AllReadOnly<T>() where T : class
+        public IQueryable<T> AllReadOnlyAsync<T>() where T : class
         {
             return DbSet<T>().AsNoTracking();
         }
