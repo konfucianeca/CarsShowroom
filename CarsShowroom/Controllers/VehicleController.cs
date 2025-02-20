@@ -29,7 +29,12 @@ namespace CarsShowroom.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var model = new VehicleDetailsViewModel();
+            if (await vehicleService.VehicleExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            var model = await vehicleService.VehiclesDetailsById(id);
 
             return View(model);
         }
@@ -83,7 +88,45 @@ namespace CarsShowroom.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            return View(new VehicleFormModel());
+            if (await vehicleService.VehicleExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await vehicleService.HasCustomerAsync(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            var model = await vehicleService.GetVehicleFormModelByIdAsync(id);
+            model.Manufacturers = await vehicleService.AllManufacturersAsync();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(VehicleFormModel vehicle, int id)
+        {
+            if (await vehicleService.VehicleExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await vehicleService.HasCustomerAsync(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            if (ModelState.IsValid == false)
+            {
+                vehicle.Manufacturers = await vehicleService.AllManufacturersAsync();
+
+                return View(vehicle);
+            }
+
+            await vehicleService.EditAsync(vehicle, id);
+
+            return RedirectToAction(nameof(Details), new { id });
         }
 
         [HttpGet]

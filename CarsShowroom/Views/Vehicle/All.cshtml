@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card-body">
-                        <h5 class="card-title">@vehicles[i].Maker</h5>
+                        <p class="card-text"><strong>Maker: </strong>@vehicles[i].Maker</p>
                         <p class="card-text"><strong>Model: </strong>@vehicles[i].Model</p>
                         <p class="card-text"><strong>Year of production: </strong>@vehicles[i].YearOfProduction</p>
                         <p class="card-text"><strong>Price: </strong>@vehicles[i].Price EUR</p>
@@ -24,6 +24,7 @@
                     <div class="card-body">
                         <p class="card-text"><strong>Region: </strong>@vehicles[i].Region</p>
                         <p class="card-text"><strong>Mileage: </strong>@vehicles[i].Mileage</p>
+                        <a asp-area="" asp-action="Details" asp-controller="Vehicle" asp-route-id="@vehicles[i].Id" class="btn btn-primary">Details</a>
                     </div>
                 </div>
             </div>

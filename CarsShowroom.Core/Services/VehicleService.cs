@@ -19,7 +19,7 @@ namespace CarsShowroom.Core.Services
         public async Task<IEnumerable<VehicleIndexServiceModel>> LastThreeVehiclesAsync()
         {
             return await repository
-                .AllReadOnly<Vehicle>()
+                .AllReadOnlyAsync<Vehicle>()
                 .OrderByDescending(v => v.Id)
                 .Take(3)
                 .Select(v => new VehicleIndexServiceModel()
@@ -38,7 +38,7 @@ namespace CarsShowroom.Core.Services
         public async Task<IEnumerable<AllVehiclesQueryModel>> AllVehiclesAsync()
         {
             return await repository
-                .AllReadOnly<Vehicle>()
+                .AllReadOnlyAsync<Vehicle>()
                 .Select(v => new AllVehiclesQueryModel()
                 {
                     Id = v.Id,
@@ -52,11 +52,11 @@ namespace CarsShowroom.Core.Services
                     Mileage = v.Mileage
                 })
                 .ToListAsync();
-        }      
+        }
 
         public async Task<IEnumerable<ManufacturerServiceModel>> AllManufacturersAsync()
         {
-            return await repository.AllReadOnly<Manufacturer>()
+            return await repository.AllReadOnlyAsync<Manufacturer>()
                 .Select(m => new ManufacturerServiceModel()
                 {
                     Id = m.Id,
@@ -67,7 +67,7 @@ namespace CarsShowroom.Core.Services
 
         public async Task<bool> ManufacturerExistsAsync(int manufacturerId)
         {
-            return await repository.AllReadOnly<Manufacturer>()
+            return await repository.AllReadOnlyAsync<Manufacturer>()
                 .AnyAsync(m => m.Id == manufacturerId);
         }
 
@@ -96,6 +96,97 @@ namespace CarsShowroom.Core.Services
             await repository.SaveChangesAsync();
 
             return vehicle.Id;
+        }
+
+        public async Task<bool> VehicleExistsAsync(int vehicleId)
+        {
+            return await repository.AllReadOnlyAsync<Vehicle>()
+                .AnyAsync(v => v.Id == vehicleId);
+        }
+        public async Task<VehicleDetailsViewModel> VehiclesDetailsById(int vehicleId)
+        {
+            var vehicleDetails = await repository.AllReadOnlyAsync<Vehicle>()
+                .Where(v => v.Id == vehicleId)
+                .Select(v => new VehicleDetailsViewModel()
+                {
+                    Id = v.Id,
+                    Maker = v.Manufacturer.Name,
+                    Model = v.Model,
+                    ImageUrl = v.ImageUrl,
+                    YearOfProduction = v.YearOfProduction,
+                    EngineType = v.EngineType.ToString(),
+                    Condition = v.Condition.ToString(),
+                    Price = v.Price,
+                    Region = v.Region,
+                    Gearbox = v.Gearbox.ToString(),
+                    Color = v.Color,
+                    Mileage = v.Mileage,
+                    Features = v.Features,
+                    ManufacturerId = v.ManufacturerId,
+                    Displacement = v.Displacement,
+                    Power = v.Power,
+                    Customer = v.Customer.Name
+                })
+                .FirstAsync();
+
+            return vehicleDetails;
+        }
+
+        public async Task<bool> HasCustomerAsync(int vehicleId, string userId)
+        {
+            return await repository.AllReadOnlyAsync<Vehicle>()
+                .AnyAsync(v => v.Id == vehicleId && v.Customer.UserId == userId);
+        }
+
+        public async Task<VehicleFormModel?> GetVehicleFormModelByIdAsync(int vehicleId)
+        {
+            var vehicle = await repository.AllReadOnlyAsync<Vehicle>()
+                .Where(v => v.Id == vehicleId)
+                .Select(v => new VehicleFormModel()
+                {
+                    Model = v.Model,
+                    Condition = v.Condition,
+                    Price = v.Price,
+                    Region = v.Region,
+                    YearOfProduction = v.YearOfProduction,
+                    Gearbox = v.Gearbox,
+                    Color = v.Color,
+                    Mileage = v.Mileage,
+                    Features = v.Features,
+                    ManufacturerId = v.ManufacturerId,
+                    ImageUrl = v.ImageUrl,
+                    Power = v.Power,
+                    Displacement = v.Displacement,
+                    EngineType = v.EngineType
+                })
+                .FirstOrDefaultAsync();
+
+            return vehicle;
+        }
+
+        public async Task EditAsync(VehicleFormModel model, int vehicleId)
+        {
+            var vehicle = await repository.GetByIdAsync<Vehicle>(vehicleId);
+
+            if (vehicle != null)
+            {
+                vehicle.Model = model.Model;
+                vehicle.Condition = model.Condition;
+                vehicle.Price = model.Price;
+                vehicle.Region = model.Region;
+                vehicle.Features = model.Features;
+                vehicle.ManufacturerId = model.ManufacturerId;
+                vehicle.ImageUrl = model.ImageUrl;
+                vehicle.Power = model.Power;
+                vehicle.Displacement = model.Displacement;
+                vehicle.EngineType = model.EngineType;
+                vehicle.Color = model.Color;
+                vehicle.Mileage = model.Mileage;
+                vehicle.Gearbox = model.Gearbox;
+                vehicle.YearOfProduction = model.YearOfProduction;
+
+                await repository.SaveChangesAsync();
+            }
         }
     }
 

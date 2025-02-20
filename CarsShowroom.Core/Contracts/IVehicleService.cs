@@ -11,5 +11,10 @@ namespace CarsShowroom.Core.Contracts
         Task<bool> ManufacturerExistsAsync(int manufacturerId);
         Task<int> CreateAsync(VehicleFormModel model,int customerId);
         Task<IEnumerable<AllVehiclesQueryModel>> AllVehiclesAsync();
+        Task<bool> VehicleExistsAsync(int vehicleId);
+        Task<VehicleDetailsViewModel> VehiclesDetailsById(int vehicleId);
+        Task<bool> HasCustomerAsync(int vehicleId, string userId);
+        Task<VehicleFormModel?> GetVehicleFormModelByIdAsync(int vehicleId);
+        Task EditAsync(VehicleFormModel model, int vehicleId);
     }
 }

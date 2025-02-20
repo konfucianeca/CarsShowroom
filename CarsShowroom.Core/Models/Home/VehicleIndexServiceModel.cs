@@ -1,4 +1,6 @@
-﻿namespace CarsShowroom.Core.Models.Home
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CarsShowroom.Core.Models.Home
 {
     public class VehicleIndexServiceModel
     {

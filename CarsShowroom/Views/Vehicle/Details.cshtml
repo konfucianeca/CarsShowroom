@@ -1,0 +1,50 @@
+﻿@model VehicleDetailsViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="card" style="width: 18rem;">
+    <img src=@Model.ImageUrl class="card-img-top" alt="Vehicle Image">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Model @ViewBag.Title</h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text"><span class="fw-bold">Maker: </span>@Model.Maker</p>
+                <p class="card-text"><span class="fw-bold">Model: </span>@Model.Model</p>
+                <p class="card-text"><span class="fw-bold">Manufactured on: </span>@Model.YearOfProduction</p>
+                <p class="card-text"><span class="fw-bold">Price: </span>@Model.Price <b>EUR</b></p>
+                <p class="card-text"><span class="fw-bold">Region: </span>@Model.Region</p>
+                <p class="card-text"><span class="fw-bold">Mileage: </span>@Model.Mileage</p>
+                <p class="card-text"><span class="fw-bold">Aditional info: </span>@Model.Features</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text"><span class="fw-bold">Engine type: </span>@Model.EngineType</p>
+                <p class="card-text"><span class="fw-bold">Engine size: </span>@Model.Displacement <b>sm3</b></p>
+                <p class="card-text"><span class="fw-bold">Engine power: </span>@Model.Power <b>Hp</b></p>
+                <p class="card-text"><span class="fw-bold">Condition: </span>@Model.Condition</p>
+                <p class="card-text"><span class="fw-bold">Gearbox: </span>@Model.Gearbox</p>
+                <p class="card-text"><span class="fw-bold">Color: </span>@Model.Color</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-6">
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        <tr class="actions">
+            <th><span class="fw-bold">Actions: </span></th>
+            <td>
+                <a asp-controller="Vehicle" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Edit</a>
+                <a asp-controller="Vehicle" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+    }
+</div>
