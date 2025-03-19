@@ -72,6 +72,7 @@ namespace CarsShowroom.Infrastructure.Data.Models
         public Engine EngineType { get; set; } 
         public int Displacement { get; set; }
         public int Power { get; set; }
+        public string SellerId { get; set; } = string.Empty;
 
         [Required]
         [Comment("Customer identifier")]

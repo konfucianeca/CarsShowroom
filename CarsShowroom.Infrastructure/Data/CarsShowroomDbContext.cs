@@ -2,7 +2,6 @@
 using CarsShowroom.Infrastructure.Data.SeedDb;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace CarsShowroom.Infrastructure.Data
 {

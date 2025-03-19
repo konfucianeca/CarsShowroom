@@ -44,7 +44,7 @@ namespace CarsShowroom.Infrastructure.Data.SeedDb
             {
                 Id = 1,
                 Name = "Petar Petrov",
-                PhoneNumber="+359899123234",
+                PhoneNumber = "+359899123234",
                 Address = "Varna, Pirin Str, 45",
                 UserId = User.Id
             };
@@ -68,7 +68,8 @@ namespace CarsShowroom.Infrastructure.Data.SeedDb
                 Features = "4x4, ABS, ESP, Airbag, Халогенни фарове, ASR/Тракшън контрол, Парктроник, Аларма, Центр. заключване, Старт-Стоп система, Безключово палене",
                 Price = 41500.00M,
                 ImageUrl = "https://automoto.bg/listings/media/listing//1709991365_nis5vfph.jpg",
-                CustomerId = FirstCustomer.Id
+                CustomerId = FirstCustomer.Id,
+                SellerId = User.UserName
             };
 
             SecondVehicle = new Vehicle()
@@ -88,7 +89,8 @@ namespace CarsShowroom.Infrastructure.Data.SeedDb
                 Features = "4x4, ABS, ESP, Airbag, Ксенонови фарове, Халогенни фарове, ASR/Тракшън контрол, Парктроник, Аларма, Имобилайзер, Центр. заключване, Застраховка, Старт-Стоп система, Безключово палене",
                 Price = 34000.00M,
                 ImageUrl = "https://automoto.bg/listings/media/listing//1720295931_img-209442bc4babdf576e0cf1740ae33342-v.jpg",
-                CustomerId = FirstCustomer.Id
+                CustomerId = FirstCustomer.Id,
+                SellerId = User.UserName
             };
 
             ThirdVehicle = new Vehicle()
@@ -108,7 +110,8 @@ namespace CarsShowroom.Infrastructure.Data.SeedDb
                 Features = "  4x4, ABS, ESP, Airbag, Ксенонови фарове, Халогенни фарове, ASR/Тракшън контрол, Парктроник, Аларма, Имобилайзер, Центр. заключване, Застраховка",
                 Price = 19000.00M,
                 ImageUrl = "https://automoto.bg/listings/media/listing//1725859766_uml1.jpg",
-                CustomerId = FirstCustomer.Id
+                CustomerId = FirstCustomer.Id,
+                SellerId = User.UserName
             };
         }
 
