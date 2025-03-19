@@ -5,6 +5,7 @@ using CarsShowroom.Core.Models.Vehicle;
 using CarsShowroom.Infrastructure.Data.Common;
 using CarsShowroom.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CarsShowroom.Core.Services
 {
@@ -89,7 +90,8 @@ namespace CarsShowroom.Core.Services
                 CustomerId = customerId,
                 EngineType = model.EngineType,
                 Displacement = model.Displacement,
-                Power = model.Power
+                Power = model.Power,
+                SellerId=model.SellerId
             };
 
             await repository.AddAsync(vehicle);
@@ -188,7 +190,27 @@ namespace CarsShowroom.Core.Services
                 await repository.SaveChangesAsync();
             }
         }
-    }
 
+        public async Task<IEnumerable<VehicleServiceModel>> AllVehiclesByUserIdAsync(string userId)
+        {
+            var myVehicles = await repository.AllReadOnlyAsync<Vehicle>()
+                .Where(v => v.SellerId == userId)
+                .Select(v => new VehicleServiceModel()
+                {
+                    Id = v.Id,
+                    Model = v.Model,
+                    Color = v.Color,
+                    Mileage = v.Mileage,
+                    Price = v.Price,
+                    ImageUrl = v.ImageUrl,
+                    ManufacturerId = v.ManufacturerId,
+                    SellerId = v.SellerId,
+                    EngineType = v.EngineType
+                })
+                .ToListAsync();
+
+            return myVehicles;
+        }
+    }
 }
 
