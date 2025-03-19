@@ -17,5 +17,6 @@ namespace CarsShowroom.Core.Contracts
         Task<VehicleFormModel?> GetVehicleFormModelByIdAsync(int vehicleId);
         Task EditAsync(VehicleFormModel model, int vehicleId);
         Task<IEnumerable<VehicleServiceModel>> AllVehiclesByUserIdAsync(string userId);
+        Task DeleteAsync(int vehicleId);
     }
 }

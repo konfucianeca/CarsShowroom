@@ -211,6 +211,12 @@ namespace CarsShowroom.Core.Services
 
             return myVehicles;
         }
+
+        public async Task DeleteAsync(int vehicleId)
+        {
+            await repository.DeleteAsync<Vehicle>(vehicleId);
+            await repository.SaveChangesAsync();
+        }
     }
 }
 

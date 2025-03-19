@@ -146,12 +146,43 @@ namespace CarsShowroom.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            return View(new VehicleDetailsViewModel());
+            if (await vehicleService.VehicleExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await vehicleService.HasCustomerAsync(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            var vehicle = await vehicleService.VehiclesDetailsById(id);
+            var model = new VehicleDeleteViewModel()
+            {
+                Id = vehicle.Id,
+                Model = vehicle.Model,
+                YearOfProduction = vehicle.YearOfProduction,
+                ImageUrl = vehicle.ImageUrl
+            };
+
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(VehicleDetailsViewModel model)
+        public async Task<IActionResult> Delete(VehicleDetailsViewModel vehicle)
         {
+            if (await vehicleService.VehicleExistsAsync(vehicle.Id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await vehicleService.HasCustomerAsync(vehicle.Id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            await vehicleService.DeleteAsync(vehicle.Id);
+
             return RedirectToAction(nameof(All));
         }
 

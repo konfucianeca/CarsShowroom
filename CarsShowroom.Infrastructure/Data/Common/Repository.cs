@@ -34,9 +34,19 @@ namespace CarsShowroom.Infrastructure.Data.Common
             return await context.SaveChangesAsync();
         }
 
-        public async Task<T?> GetByIdAsync<T>(int id) where T : class
+        public async Task<T?> GetByIdAsync<T>(object id) where T : class
         {
             return await DbSet<T>().FindAsync(id);
+        }
+
+        public async Task DeleteAsync<T>(object id) where T : class
+        {
+            T? entity = await GetByIdAsync<T>(id);
+
+            if (entity != null)
+            {
+                DbSet<T>().Remove(entity);
+            }
         }
     }
 }
