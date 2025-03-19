@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace CarsShowroom.Controllers
+
 {
     public class VehicleController : BaseController
     {
@@ -22,6 +23,17 @@ namespace CarsShowroom.Controllers
         public async Task<IActionResult> All()
         {
             var model = await vehicleService.AllVehiclesAsync();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MyVehicles()
+        {
+            var userId = User.Id();
+            IEnumerable<VehicleServiceModel> model;
+
+            model = await vehicleService.AllVehiclesByUserIdAsync(userId);
 
             return View(model);
         }
@@ -60,6 +72,9 @@ namespace CarsShowroom.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(VehicleFormModel vehicle)
         {
+            string userId = GetUserId();
+            vehicle.SellerId = userId;
+
             if (await vehicleService.ManufacturerExistsAsync(vehicle.ManufacturerId) == false)
             {
                 ModelState.AddModelError(nameof(vehicle.ManufacturerId), "");
@@ -71,8 +86,7 @@ namespace CarsShowroom.Controllers
 
                 return View(vehicle);
             }
-
-            string userId = GetUserId();
+            
             bool userExists = await customerService.ExistByIdAsync(userId);
             if (!userExists)
             {
