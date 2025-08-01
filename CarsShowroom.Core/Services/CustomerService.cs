@@ -32,9 +32,18 @@ namespace CarsShowroom.Core.Services
 
         public async Task<int> GetCustomerIdAsync(string userId)
         {
-            return (await repository.AllReadOnlyAsync<Customer>()
-                .FirstOrDefaultAsync(c => c.UserId == userId))
-                .Id;
+            //return (await repository.AllReadOnlyAsync<Customer>()
+            //    .FirstOrDefaultAsync(c => c.UserId == userId)) 
+            //    .Id;
+
+            var customer = await repository.AllReadOnlyAsync<Customer>()
+                .FirstOrDefaultAsync(c => c.UserId == userId);
+
+            if (customer == null)
+            {
+                return 0;
+            }
+            return customer.Id;
         }
         public async Task<bool> UserWithPhoneNumberExistAsync(string phoneNumber)
         {
