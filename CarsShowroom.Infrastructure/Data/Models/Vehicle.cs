@@ -24,6 +24,10 @@ namespace CarsShowroom.Infrastructure.Data.Models
         [MaxLength(VehicleModelMaxLenght)]
         [Comment("Vehicle model")]
         public string Model { get; set; } = string.Empty;
+
+        [Required]
+        [Comment("Vehicle type")]
+        public VehicleType  VehicleType { get; set; }
         public Condition Condition { get; set; } 
 
         [Required]
