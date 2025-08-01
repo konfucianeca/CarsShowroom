@@ -36,6 +36,9 @@ namespace CarsShowroom.Core.Models.Vehicle
         public string SellerId { get; set; } = null!;
 
         [Required(ErrorMessage = RequiredMessage)]
+        public VehicleType VehicleType { get; set; }
+
+        [Required(ErrorMessage = RequiredMessage)]
         public Engine EngineType { get; set; }
 
         [Display(Name = "Sold!")]

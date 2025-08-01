@@ -13,6 +13,9 @@ namespace CarsShowroom.Core.Models.Vehicle
             MinimumLength = VehicleModelMinLenght,
             ErrorMessage = StringLengthMessage)]
         public string Model { get; set; } = null!;
+
+        [Required(ErrorMessage = RequiredMessage)]
+        public VehicleType VehicleType { get; set; }
         public Condition Condition { get; set; }
 
         [Required(ErrorMessage = RequiredMessage)]

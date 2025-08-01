@@ -31,6 +31,7 @@ namespace CarsShowroom.Core.Services
                     Model = v.Model,
                     YearOfProduction = v.YearOfProduction,
                     EngineType = v.EngineType.ToString(),
+                    VehicleType= v.VehicleType.ToString(),
                     Price = v.Price
                 })
                 .ToListAsync();
@@ -48,6 +49,7 @@ namespace CarsShowroom.Core.Services
                     Model = v.Model,
                     YearOfProduction = v.YearOfProduction,
                     EngineType = v.EngineType.ToString(),
+                    VehicleType = v.VehicleType.ToString(),
                     Price = v.Price,
                     Region = v.Region,
                     Mileage = v.Mileage
@@ -89,6 +91,7 @@ namespace CarsShowroom.Core.Services
                 ManufacturerId = model.ManufacturerId,
                 CustomerId = customerId,
                 EngineType = model.EngineType,
+                VehicleType = model.VehicleType,
                 Displacement = model.Displacement,
                 Power = model.Power,
                 SellerId=model.SellerId
@@ -117,6 +120,7 @@ namespace CarsShowroom.Core.Services
                     ImageUrl = v.ImageUrl,
                     YearOfProduction = v.YearOfProduction,
                     EngineType = v.EngineType.ToString(),
+                    VehicleType=v.VehicleType.ToString(),
                     Condition = v.Condition.ToString(),
                     Price = v.Price,
                     Region = v.Region,
@@ -159,7 +163,8 @@ namespace CarsShowroom.Core.Services
                     ImageUrl = v.ImageUrl,
                     Power = v.Power,
                     Displacement = v.Displacement,
-                    EngineType = v.EngineType
+                    EngineType = v.EngineType,
+                    VehicleType= v.VehicleType
                 })
                 .FirstOrDefaultAsync();
 
@@ -182,6 +187,7 @@ namespace CarsShowroom.Core.Services
                 vehicle.Power = model.Power;
                 vehicle.Displacement = model.Displacement;
                 vehicle.EngineType = model.EngineType;
+                vehicle.VehicleType = model.VehicleType;
                 vehicle.Color = model.Color;
                 vehicle.Mileage = model.Mileage;
                 vehicle.Gearbox = model.Gearbox;
@@ -205,7 +211,8 @@ namespace CarsShowroom.Core.Services
                     ImageUrl = v.ImageUrl,
                     ManufacturerId = v.ManufacturerId,
                     SellerId = v.SellerId,
-                    EngineType = v.EngineType
+                    EngineType = v.EngineType,
+                    VehicleType = v.VehicleType
                 })
                 .ToListAsync();
 
