@@ -9,7 +9,7 @@
             <h6>Price: @Model.Price EUR</h6>
             <h6>(@(Model.IsSold ? "Sold" : "Available"))</h6>
             <br />
-            <a asp-controller="Vehicle" asp-action="Details" asp-route-id="@Model.Id" class="btn-success">Details</a>
+            <a asp-controller="Vehicle" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-success">Details</a>
             @if (this.User.Identity.IsAuthenticated)
             {
                 <a asp-controller="Vehicle" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
