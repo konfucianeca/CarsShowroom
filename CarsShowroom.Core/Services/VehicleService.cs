@@ -5,7 +5,6 @@ using CarsShowroom.Core.Models.Vehicle;
 using CarsShowroom.Infrastructure.Data.Common;
 using CarsShowroom.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 
 namespace CarsShowroom.Core.Services
 {
